@@ -13,6 +13,10 @@ vecho $0: @=$@
 declare function=$1
 
 shift
+
+declare a1=$1
+declare a2=$2
+
 case $function in
         sum )      sum $@ ;;
        _sum )    _ sum $1 ;;
@@ -24,8 +28,12 @@ case $function in
        _min )    _ min $1 ;;
        skip )     skip $1 $(tail $@) ;;
       _skip )   _ skip $1 $2 ;;
-        map )      map $1 $(tail $@) ;;
+        map )    shift
+                   map "$a1" $@ ;;
        _map )    _ map $1 $2 ;;
+       find )    shift
+                  find "$a1" tail $@ ;;
+      _find )   _ find $1 $2 ;;
      filter )   filter $1 $(tail $@) ;;
     _filter ) _ filter $1 $2 ;;
 esac

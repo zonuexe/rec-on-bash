@@ -13,10 +13,13 @@ function _ () {
 }
 
 function _c () {
+    vvvecho _c: "@=$@"
     declare -r f="$1"
     shift
     vvecho _c: "f=(){ $f }"
-    eval $f
+    declare -r r=$(eval $f)
+    vvecho _c: r=$r
+    echo $r
 }
 
 function vecho () {
